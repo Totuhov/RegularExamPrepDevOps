@@ -17,15 +17,15 @@ pipeline {
     }
 
     stages {
-        stage('Checkout') {
-            when {
-                branch 'feature-ci-pipeline'  // Only run when the branch is 'feature-ci-pipeline'
-            }
-            steps {
-                // Checkout the code from the repository
-                checkout scm
-            }
-        }
+        // stage('Checkout') {
+        //     when {
+        //         branch 'feature-ci-pipeline'  // Only run when the branch is 'feature-ci-pipeline'
+        //     }
+        //     steps {
+        //         // Checkout the code from the repository
+        //         checkout scm
+        //     }
+        // }
 
         stage('Build and Test') {
             when {

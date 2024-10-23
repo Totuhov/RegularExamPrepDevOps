@@ -4,6 +4,7 @@ pipeline {
         pollSCM('H/1 * * * *')
     }
     stages {
+        stage('Checkout') {
          when {
                 branch 'feature-ci-pipeline'
             }
@@ -34,5 +35,6 @@ pipeline {
                     }
                 }
             }
+        }
     }
 }

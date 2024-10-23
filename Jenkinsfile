@@ -7,23 +7,25 @@ pipeline {
                 checkout feature-ci-pipeline
             }
         }
-	when {
-                branch 'develop'  // Runs only if the branch is 'develop'
-            }
-        stages {
-                stage('Restore Dependencies') { 
-                    steps {
-                    bat "dotnet restore"
-                    }
-            }
-            stage('Build Solution') { 
-                steps {
-                    bat "dotnet build --no-restore "
+    stage('Build and Test') {
+        when {
+                    branch 'develop'  // Runs only if the branch is 'develop'
                 }
-            }
-            stage('Deploy') { 
-                steps {
-                    bat "dotnet test --no-build"
+            stages {
+                    stage('Restore Dependencies') { 
+                        steps {
+                        bat "dotnet restore"
+                        }
+                }
+                stage('Build Solution') { 
+                    steps {
+                        bat "dotnet build --no-restore "
+                    }
+                }
+                stage('Deploy') { 
+                    steps {
+                        bat "dotnet test --no-build"
+                    }
                 }
             }
         }

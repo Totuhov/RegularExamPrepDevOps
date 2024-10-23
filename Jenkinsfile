@@ -18,6 +18,11 @@ pipeline {
             //     branch 'feature-ci-pipeline'  // Run only on the 'feature-ci-pipeline' branch
             // }
             stages {
+                stage('Chechout branch'){
+                    steps{
+                        bat "git checkout feature-ci-pipeline"
+                    }
+                }
                 stage('Restore Dependencies') {
                     steps {
                         bat "dotnet restore"  // Restore dependencies for the solution

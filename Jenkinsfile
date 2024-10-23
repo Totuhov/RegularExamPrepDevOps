@@ -11,7 +11,7 @@ pipeline {
                 bat "dotnet build --no-restore "
             }
         }
-        stage('Test') { 
+        stage('Run Tests') { 
             steps {
                 bat "dotnet test --no-build"
             }

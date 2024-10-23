@@ -13,8 +13,6 @@ using HouseRentingSystem.Web.Controllers;
 using Microsoft.Extensions.FileSystemGlobbing.Internal.Patterns;
 using HouseRentingSystem.Services.Rents;
 
-//Test Comment
-
 var builder = WebApplication.CreateBuilder(args);
 
 var connectionString = builder.Configuration.GetConnectionString("DefaultConnection");

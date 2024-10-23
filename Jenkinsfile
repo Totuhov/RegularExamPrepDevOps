@@ -9,7 +9,7 @@ pipeline {
         stage('Checkout') {
             steps {
                 // Check out the code from the repository
-                checkout scm
+                checkout feature-ci-pipeline
             }
         }
 

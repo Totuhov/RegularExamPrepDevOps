@@ -1,19 +1,30 @@
 pipeline {
     agent any 
     stages {
-        stage('Restore Dependencies') { 
+	stage('Checkout') {
             steps {
-                bat "dotnet restore"
+                // Checkout the code from the repository
+                checkout feature-ci-pipeline
             }
         }
-        stage('Build Solution') { 
-            steps {
-                bat "dotnet build --no-restore "
+	when {
+                branch 'develop'  // Runs only if the branch is 'develop'
             }
-        }
-        stage('Deploy') { 
-            steps {
-                bat "dotnet test --no-build"
+        stages {
+                stage('Restore Dependencies') { 
+                    steps {
+                    bat "dotnet restore"
+                    }
+            }
+            stage('Build Solution') { 
+                steps {
+                    bat "dotnet build --no-restore "
+                }
+            }
+            stage('Deploy') { 
+                steps {
+                    bat "dotnet test --no-build"
+                }
             }
         }
     }

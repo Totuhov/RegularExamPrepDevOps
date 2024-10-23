@@ -6,16 +6,7 @@ pipeline {
         pollSCM('H/1 * * * *')
     }
 
-    stages {
-        stage('Checkout') {
-            when {
-                branch 'feature-ci-pipeline'
-            }
-            steps {
-                checkout scm
-            }
-        }
-
+    stages {        
         stage('Build and Test') {
             when {
                 branch 'feature-ci-pipeline'

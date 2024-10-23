@@ -9,7 +9,7 @@ pipeline {
         }
     stage('Build and Test') {
         when {
-                    branch 'develop'  // Runs only if the branch is 'develop'
+                    branch 'feature-ci-pipeline '
                 }
             stages {
                     stage('Restore Dependencies') { 

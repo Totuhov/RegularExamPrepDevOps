@@ -1,15 +1,30 @@
 pipeline {
-    agent any  // Use any available agent
+    agent any
     
+
+    triggers {
+        pollSCM('H/1 * * * *')
+    }
+
     stages {
+        stage('Checkout') {
+            when {
+                branch 'feature-ci-pipeline'
+            }
+            steps {
+                checkout scm
+            }
+        }
 
         stage('Build and Test') {
+            when {
+                branch 'feature-ci-pipeline'
+            }
             stages {
                 stage('Restore Dependencies') {
                     steps {
                         script {
-                            // Restore dependencies for the solution
-                            bat "dotnet restore "
+                            bat "dotnet restore"
                         }
                     }
                 }
@@ -17,8 +32,7 @@ pipeline {
                 stage('Build Solution') {
                     steps {
                         script {
-                            // Build the solution in Release mode
-                            bat "dotnet build "
+                            bat "dotnet build"
                         }
                     }
                 }
@@ -26,7 +40,6 @@ pipeline {
                 stage('Run Unit Tests') {
                     steps {
                         script {
-                            // Run tests from the specific test project
                             bat "dotnet test --no-build --verbosity normal"
                         }
                     }

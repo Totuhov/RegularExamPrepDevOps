@@ -14,31 +14,25 @@ pipeline {
         }
 
         stage('Build and Test') {
-            when {
-                branch 'feature-ci-pipeline'  // Run only on the 'feature-ci-pipeline' branch
-            }
+            // when {
+            //     branch 'feature-ci-pipeline'  // Run only on the 'feature-ci-pipeline' branch
+            // }
             stages {
                 stage('Restore Dependencies') {
                     steps {
-                        script {
-                            bat "dotnet restore"  // Restore dependencies for the solution
-                        }
+                        bat "dotnet restore"  // Restore dependencies for the solution
                     }
                 }
 
                 stage('Build Solution') {
                     steps {
-                        script {
-                            bat "dotnet build"  // Build the solution
-                        }
+                        bat "dotnet build"  // Build the solution
                     }
                 }
 
                 stage('Run Unit Tests') {
                     steps {
-                        script {
-                            bat "dotnet test --no-build --verbosity normal"  // Run tests without building again
-                        }
+                        bat "dotnet test --no-build --verbosity normal"  // Run tests without building again
                     }
                 }
             }

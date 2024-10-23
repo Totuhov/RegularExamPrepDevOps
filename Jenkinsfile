@@ -6,7 +6,7 @@ pipeline {
     stages {
         stage('Checkout') {
             when {
-                branch 'dfeature-ci-pipeline '  // Only run when the branch is 'feature-ci-pipeline '
+                branch 'feature-ci-pipeline '  // Only run when the branch is 'feature-ci-pipeline '
             }
             steps {
                 // Checkout the code from the repository

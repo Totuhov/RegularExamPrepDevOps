@@ -4,20 +4,35 @@ pipeline {
         pollSCM('H/1 * * * *')
     }
     stages {
-        stage('Restore Dependencies') { 
-            steps {
-            bat "dotnet restore"
+         when {
+                branch 'feature-ci-pipeline'
             }
-        }
-        stage('Build Solution') { 
-            steps {
-                bat "dotnet build --no-restore "
+            stages {
+                stage('Restore Dependencies') {
+                    steps {
+                        script {
+                            bat "dotnet restore"
+                        }
+                    }
+                }
+
+                stage('Build Solution') {
+                    steps {
+                        script {
+                            // Build the solution in Release mode
+                            bat "dotnet build"
+                        }
+                    }
+                }
+
+                stage('Run Unit Tests') {
+                    steps {
+                        script {
+                            // Run tests from the specific test project
+                            bat "dotnet test -no-build --verbosity normal"
+                        }
+                    }
+                }
             }
-        }
-        stage('Run Tests') { 
-            steps {
-                bat "dotnet test --no-build"
-            }
-        }
     }
 }

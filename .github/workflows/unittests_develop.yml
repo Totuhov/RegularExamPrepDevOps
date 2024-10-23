@@ -9,7 +9,7 @@ jobs:
   build:
 
     runs-on: windows-latest 
-    
+        
     env:
       Solution_Name: HouseRentingSystem.sln                                                              # Replace with your solution name, i.e. MyWpfApp.sln.
       Test_Project_Path: HouseRentingSystem.UnitTests\HouseRentingSystem.UnitTests.csproj                # Replace with the path to your test project, i.e. MyWpfApp.Tests\MyWpfApp.Tests.csproj.
@@ -31,10 +31,10 @@ jobs:
       uses: microsoft/setup-msbuild@v2
 
     - name: Restore dependencies
-      run: dotnet restore ${{ env.Solution_Name }}
+      run: dotnet restore
 
     - name: Build solution
-      run: dotnet build ${{ env.Solution_Name }} --configuration ${{ matrix.configuration }} --no-restore
+      run: dotnet build
 
     # Execute all unit tests in the solution
     - name: Execute unit tests
